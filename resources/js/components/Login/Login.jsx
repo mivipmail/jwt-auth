@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Field, reduxForm} from "redux-form";
-import {email, password, required} from "../../utils/validators";
+import {email, required} from "../../utils/validators";
 import {Input} from "../common/FormControls/FormControls";
 import {withAPI} from "../../hocs/withAPI";
 import {useNavigate} from "react-router-dom";
 import {withToken} from "../../hocs/withToken";
-import {useState} from "react";
+import {compose} from "@reduxjs/toolkit";
 
 const Login = (props) => {
     const [httpError, setHttpError] = useState(null)
@@ -80,4 +80,7 @@ const LoginFormRedux = reduxForm({
     form: 'login'
 })(LoginForm)
 
-export default withToken(withAPI(Login))
+export default compose(
+    withAPI,
+    withToken,
+)(Login)

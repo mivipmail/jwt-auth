@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useCallback, useState} from 'react'
 import {Field, formValueSelector, reduxForm} from "redux-form";
 import {email, password, passwordConfirmCreator, required} from "../../utils/validators";
 import {Input} from "../common/FormControls/FormControls";

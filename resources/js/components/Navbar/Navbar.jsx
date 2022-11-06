@@ -10,6 +10,7 @@ const Navbar = (props) => {
         props.API.post('/api/auth/logout').then(res => {
             localStorage.removeItem('access_token')
             navigate('/login')
+        }).catch(error => {
         })
     }
 

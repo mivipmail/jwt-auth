@@ -6,7 +6,7 @@ export const email = value =>
         'Пожалуйста, введите корректный e-mail' : undefined)
 
 export const password = value =>
-    value && (!/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])/g.test(value) ?
+    value && (!/(?=.*[0-9])(?=.*[a-zа-яё])(?=.*[A-ZА-ЯЁ])/g.test(value) ?
         'Пароль должен содержать символы в разных регистрах, цифры' : undefined)
 
 export const passwordConfirmCreator = password => value =>

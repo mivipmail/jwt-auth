@@ -6,10 +6,10 @@ export const withAPI = (Component) => {
     function APIComponent(props) {
         const API = axios.create()
         const navigate = useNavigate()
-        let access_token = localStorage.getItem('access_token')
 
 
         API.interceptors.request.use(config => {
+            const access_token = localStorage.getItem('access_token')
             if(access_token)
                 config.headers.authorization = `Bearer ${access_token}`
 
@@ -19,13 +19,14 @@ export const withAPI = (Component) => {
 
         API.interceptors.response.use({}, error => {
             if(error.response.data.message === 'Token has expired') {
+                const access_token = localStorage.getItem('access_token')
                 return axios.post('/api/auth/refresh', {}, {
                     headers: {
                         'authorization': `Bearer ${access_token}`
                     }
                 }).then(res => {
                     localStorage.setItem('access_token', res.data.access_token)
-                    access_token = res.data.access_token
+                    const access_token = res.data.access_token
 
                     error.config.headers.authorization = `Bearer ${access_token}`
 
